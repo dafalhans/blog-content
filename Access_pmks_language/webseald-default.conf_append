@@ -1,0 +1,27 @@
+[http-transformations]
+
+# The http-transformations stanza is used to house configuration information
+# which is necessary for the support of WebSEAL HTTP transformations.
+# WebSEAL HTTP transformations are used to modify HTTP requests and
+# HTTP responses (excluding the HTTP body) using XSLT.
+# To enable the HTTP transformations for a particular object a POP should
+# be attached to the appropriate part of the object space.  This POP
+# should contain an extended attribute(s) with name of 'HTTPTransformation'
+# and a value of 'Request=<resource-name>' and/or 'Response=<resource-name>'.
+#
+# HTTP transformation resources can be defined by specifying the resource name
+# and the path to the resource file.
+#
+# Format is:
+#    <resource-name> = <resource-xsl-file>
+
+everything = /var/pdweb/shared/xslt/http-transformation/mod-lang
+
+#
+# The [http-transformations:<resource-name>] stanza is used to house
+# configuration which is specific to a particular HTTP transformation resource.
+#
+
+
+[http-transformations:everything]
+request-match = request:*

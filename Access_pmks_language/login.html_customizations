@@ -1,0 +1,54 @@
+<script type="text/javascript">
+    	function onLoadPage() {
+    		showError();
+    		setFocus();
+            setLang();
+    	}
+		
+		
+       function SetCookie() {
+                var name = "LangPref"
+                var langselect=document.getElementById("my-dropdown").value
+                var expdate = new Date();
+                expdate.setTime(expdate.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 days from now
+
+                document.cookie = name + "=" + escape(langselect) +
+                "; expires=" + expdate.toGMTString() + "" +
+                "; path=" + "/" +
+                "; domain=" + "192.168.42.131" +
+                "; secure="+"true";
+                location.reload()
+      }
+
+
+       function setLang2(name){
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for(var i = 0; i < ca.length; i++) {
+                     var c = ca[i];
+                     while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                     if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+       }
+
+       function setLang(name){
+                var LangSelect = document.getElementById('my-dropdown');
+                var selectedLang = setLang2('LangPref');
+                LangSelect.value = selectedLang;
+       }
+
+    </script>
+	
+	
+	
+ <div class="lang">
+        <select class="login-inputs" id="my-dropdown" name="my-dropdown">
+            <option value="en">English</option>
+            <option value="ar">Arabic</option>
+            <option value="fr">French</option>
+        </select>
+        <button class="submitButton button-1 ease-in-anim-fast" onclick="SetCookie()">
+        Activate Language
+        </button>
+</div>	
